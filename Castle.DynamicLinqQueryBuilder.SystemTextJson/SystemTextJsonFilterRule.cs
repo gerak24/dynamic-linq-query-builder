@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-
-
 namespace Castle.DynamicLinqQueryBuilder.SystemTextJson
 {
-
     using System.Text.Json;
     public class SystemTextJsonFilterRule : IFilterRule
     {
@@ -15,7 +12,7 @@ namespace Castle.DynamicLinqQueryBuilder.SystemTextJson
         /// <value>
         /// The condition.
         /// </value>
-        public string Condition { get; set; }
+        public string Combinator { get; set; }
         /// <summary>
         /// The name of the field that the filter applies to.
         /// </summary>
@@ -59,7 +56,8 @@ namespace Castle.DynamicLinqQueryBuilder.SystemTextJson
         /// </value>
         public string Type { get; set; }
 
-        private Object _Value { get; set; }
+        // ReSharper disable once InconsistentNaming
+        private object _Value { get; set; }
         /// <summary>
         /// Gets or sets the value of the filter.
         /// </summary>
@@ -74,7 +72,7 @@ namespace Castle.DynamicLinqQueryBuilder.SystemTextJson
                 // See if this is a JsonElement
                 if (_Value is JsonElement jsonValue)
                 {
-                    System.Type myType = QueryBuilder.GetCSharpType(Type);
+                    var myType = QueryBuilder.GetCSharpType(Type);
                            
                     try
                     {
@@ -123,12 +121,12 @@ namespace Castle.DynamicLinqQueryBuilder.SystemTextJson
                 case "integer":
                     o = element.ValueKind == JsonValueKind.Number
                         ? element.GetInt32()
-                        : Int32.Parse(element.GetString());
+                        : int.Parse(element.GetString() ?? string.Empty);
                     break;
                 case "double":
                     o = element.ValueKind == JsonValueKind.Number
                         ? element.GetDouble()
-                        : double.Parse(element.ToString());
+                        : double.Parse(element.ToString() ?? string.Empty);
                     break;
                 case "string":
                     o = element.ToString();
@@ -138,9 +136,9 @@ namespace Castle.DynamicLinqQueryBuilder.SystemTextJson
                     o = DateTime.Parse(element.GetString(), CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
                     break;
                 case "boolean":
-                    o = ((element.ValueKind == JsonValueKind.True) || (element.ValueKind == JsonValueKind.False))
+                    o = element.ValueKind is JsonValueKind.True or JsonValueKind.False
                         ? element.GetBoolean()
-                        : bool.Parse(element.ToString());
+                        : bool.Parse(element.ToString() ?? string.Empty);
                     break;
                 case "guid":
                     o = element.GetGuid();

@@ -12,7 +12,7 @@ namespace Castle.DynamicLinqQueryBuilder
         /// <summary>
         /// The <see cref="CultureInfo"/> to use when converting string representations (default InvariantCulture).
         /// </summary>
-        public CultureInfo CultureInfo { get; set; } = CultureInfo.InvariantCulture;
+        public CultureInfo CultureInfo { get; } = CultureInfo.InvariantCulture;
 
         /// <summary>
         /// Whether <see cref="DateTime"/> types should be parsed as UTC.
@@ -37,6 +37,6 @@ namespace Castle.DynamicLinqQueryBuilder
         /// <summary>
         /// Flag to null check CLR objects in nested queries. May Cause ORM queries to fail.
         /// </summary>
-        public bool NullCheckNestedCLRObjects { get; set; } = false;
+        public bool NullCheckNestedClrObjects { get; set; } = false;
     }
 }

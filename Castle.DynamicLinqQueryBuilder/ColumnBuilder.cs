@@ -19,7 +19,7 @@ namespace Castle.DynamicLinqQueryBuilder
         /// <returns></returns>
         public static List<ColumnDefinition> GetDefaultColumnDefinitionsForType(this Type dataType, bool camelCase = false)
         {
-            List<ColumnDefinition> itemBankColumnDefinitions = new List<ColumnDefinition>();
+            var itemBankColumnDefinitions = new List<ColumnDefinition>();
 
             var id = 1;
             foreach (var prop in dataType.GetProperties())
@@ -36,7 +36,7 @@ namespace Castle.DynamicLinqQueryBuilder
                 {
                     type = "double";
                 }
-                else if ((prop.PropertyType == typeof (int)) || (prop.PropertyType == typeof (int?)))
+                else if ((prop.PropertyType == typeof (int)) || prop.PropertyType == typeof (int?))
                 {
                     type = "integer";
                 }

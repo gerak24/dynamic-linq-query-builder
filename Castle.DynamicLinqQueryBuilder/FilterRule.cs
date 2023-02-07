@@ -17,7 +17,7 @@ namespace Castle.DynamicLinqQueryBuilder
         /// <value>
         /// The condition.
         /// </value>
-        public string Condition { get; set; }
+        public string Combinator { get; set; }
         /// <summary>
         /// The name of the field that the filter applies to.
         /// </summary>
