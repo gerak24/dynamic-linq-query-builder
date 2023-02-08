@@ -115,8 +115,8 @@ namespace Castle.DynamicLinqQueryBuilder.SystemTextJson
 
         private object GetJsonElementAsType(JsonElement element)
         {
-            Object o = null;
-            switch (this.Type)
+            object o = null;
+            switch (Type)
             {
                 case "integer":
                     o = element.ValueKind == JsonValueKind.Number
