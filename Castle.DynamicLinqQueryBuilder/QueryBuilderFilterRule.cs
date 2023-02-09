@@ -10,15 +10,6 @@ namespace Castle.DynamicLinqQueryBuilder
     public class QueryBuilderFilterRule : IFilterRule
     {
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rules"></param>
-        public QueryBuilderFilterRule(List<QueryBuilderFilterRule> rules)
-        {
-            Rules = rules ?? new List<QueryBuilderFilterRule>();
-        }
-
-        /// <summary>
         /// Condition - acceptable values are "and" and "or".
         /// </summary>
         /// <value>
